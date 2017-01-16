@@ -6,7 +6,7 @@ var express                 = require("express"),
     LocalStrategy           = require("passport-local"),
     passportLocalMongoose   = require("passport-local-mongoose");
 //    ejs                     = require("ejs"),
-//    expressSession          = require("express-session");
+
     
 
 
@@ -19,7 +19,7 @@ var app = express();
 app.set("view engine", "ejs");
 
 app.use(require("express-session")({
-    secret: "Rusty is best, cutest dog in the world",
+    secret: "Rusty is the best and cutest dog in the world",
     resave: false,
     saveUninitialized: false
 }));
