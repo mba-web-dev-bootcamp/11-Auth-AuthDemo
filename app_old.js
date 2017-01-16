@@ -1,0 +1,58 @@
+var express                 = require("express"),
+    mongoose                = require("mongoose"),
+    passport                = require("passport"),
+    bodyParser              = require("body-parser"),
+    User                    = require ("./models/user"),
+    LocalStrategy           = require("passport-local"),
+    passportLocalMongoose   = require("passport-local-mongoose");
+//    ejs                     = require("ejs"),
+//    expressSession          = require("express-session");
+    
+
+
+
+mongoose.connect("mongodb://localhost/auth_demo_app");
+
+
+// APPLICATION CONFIGURATION
+var app = express();
+app.set("view engine", "ejs");
+
+app.use(require("express-session")({
+    secret: "Rusty is best, cutest dog in the world",
+    resave: false,
+    saveUninitialized: false
+}));
+
+console.log(passport);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+// ==============
+// ROUTES
+// ==============
+
+app.get("/", function(req, res){
+   res.render("home"); 
+});
+
+app.get("/secret", function(req, res){
+    res.render("secret");
+})
+
+
+
+
+// ==============
+// LISTENER
+// ==============
+
+
+app.listen(process.env.PORT, process.env.IP, function(){
+   console.log("server started ......") 
+});
