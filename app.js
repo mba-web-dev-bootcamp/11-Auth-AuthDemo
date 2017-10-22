@@ -10,7 +10,6 @@ var express                 = require("express"),
     
 
 
-
 mongoose.connect("mongodb://localhost/auth_demo_app");
 mongoose.Promise = global.Promise;
 
